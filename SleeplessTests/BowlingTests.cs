@@ -52,5 +52,11 @@ namespace SleeplessTests
             g.Score().Should().Be(expectedScore);
         }
 
+        [Fact]
+        public void A_spare_in_first_frame_followed_by_three_followed_by_all_zero_scores_16()
+        {
+            
+        }
+
     }
 }

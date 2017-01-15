@@ -2,15 +2,22 @@
 {
     public class BowlingGame
     {
-        private int TrackedScore;
+        private int[] _rolls = new int[21];
+        private int _currentRoll = 0;
+
         public void Roll(int pins)
         {
-            TrackedScore = TrackedScore + pins;
+            _rolls[_currentRoll++] = pins;
         }
 
         public int Score()
         {
-            return TrackedScore;
+            var score = 0;
+            foreach (var t in _rolls)
+            {
+                score = score + t;
+            }
+            return score;
         }
     }
 }
