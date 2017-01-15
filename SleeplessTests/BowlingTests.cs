@@ -52,11 +52,23 @@ namespace SleeplessTests
             g.Score().Should().Be(expectedScore);
         }
 
-        [Fact]
-        public void A_spare_in_first_frame_followed_by_three_followed_by_all_zero_scores_16()
+        [Theory]
+        [InlineData(3,16)]
+        [InlineData(2,14)]
+        [InlineData(8,26)]
+        public void Test_one_spare_followed_by_score_and_misses(int pins, int expectedScore)
         {
-            
+            SetUp();
+            RollSpare();
+            g.Roll(pins);
+            RollMany(0,17);
+            g.Score().Should().Be(expectedScore);
         }
 
+        private void RollSpare()
+        {
+            g.Roll(5);
+            g.Roll(5);
+        }
     }
 }

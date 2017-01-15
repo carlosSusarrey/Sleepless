@@ -13,11 +13,25 @@
         public int Score()
         {
             var score = 0;
-            foreach (var t in _rolls)
+            var frameIndex = 0;
+            for (var frame = 0; frame < 10; frame ++)
             {
-                score = score + t;
+                if (IsSpare(frameIndex))
+                {
+                    score = score + 10 + _rolls[frameIndex + 2];
+                }
+                else
+                {
+                    score = score + _rolls[frameIndex] + _rolls[frameIndex + 1];
+                }
+                frameIndex += 2;
             }
             return score;
+        }
+
+        private bool IsSpare(int frameIndex)
+        {
+            return _rolls[frameIndex] + _rolls[frameIndex + 1] == 10;
         }
     }
 }
