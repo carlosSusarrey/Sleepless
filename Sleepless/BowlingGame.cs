@@ -18,10 +18,10 @@
             {
                 if (IsStrike(frameIndex))
                 {
-                    score = score + 10 + _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
+                    score = score + 10 + StrikeBonus(frameIndex);
                 }else if (IsSpare(frameIndex))
                 {
-                    score = score + 10 + _rolls[frameIndex + 2];
+                    score = score + 10 + SpareBonus(frameIndex);
                     frameIndex ++;
                 }
                 else
@@ -32,6 +32,16 @@
                 frameIndex++;
             }
             return score;
+        }
+
+        private int SpareBonus(int frameIndex)
+        {
+            return _rolls[frameIndex + 2];
+        }
+
+        private int StrikeBonus(int frameIndex)
+        {
+            return _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
         }
 
         private bool IsStrike(int frameIndex)
