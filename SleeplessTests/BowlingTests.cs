@@ -65,6 +65,33 @@ namespace SleeplessTests
             g.Score().Should().Be(expectedScore);
         }
 
+        [Theory]
+        [InlineData(3,4, 24)]
+        [InlineData(2,2, 18)]
+        [InlineData(8,1, 28)]
+        public void Test_one_strike_followed_by_score_and_misses(int firstRoll,int secondRoll, int expectedScore)
+        {
+            SetUp();
+            RollStrike();
+            g.Roll(firstRoll);
+            g.Roll(secondRoll);
+            RollMany(0, 16);
+            g.Score().Should().Be(expectedScore);
+        }
+
+        [Fact]
+        public void A_perfect_game_scores_300_points()
+        {
+            SetUp();
+            RollMany(10,12);
+            g.Score().Should().Be(300);
+        }
+
+        private void RollStrike()
+        {
+            g.Roll(10);
+        }
+
         private void RollSpare()
         {
             g.Roll(5);
