@@ -71,5 +71,13 @@ namespace Sleepless.Tests
             RollMany(0,16);
             _myGame.Score().Should().Be(26);
         }
+
+        [Fact]
+        public void Rolling_all_Strikes_scores_300()
+        {
+            _myGame = GetNewGame();
+            RollMany(10,12);
+            _myGame.Score().Should().Be(300);
+        }
     }
 }

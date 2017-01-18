@@ -20,8 +20,7 @@ namespace Sleepless
                 {
                     score = score + 10 + StrikeBonus(frameIndex);
                     frameIndex ++;
-                }
-                if (IsSpare(frameIndex))
+                }else if (IsSpare(frameIndex))
                 {
                     score = score + 10 + SpareBonus(frameIndex);
                     frameIndex += 2;
