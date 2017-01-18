@@ -13,22 +13,27 @@ namespace Sleepless
         public int Score()
         {
             var score = 0;
-            var i = 0;
+            var frameIndex = 0;
             for (var frame = 0; frame < 10; frame++)
             {
-                if (_rolls[i] + _rolls[i + 1] == 10)
+                if (isSpare(frameIndex))
                 {
-                    score = 10 + _rolls[i + 2];
-                    i += 2;
+                    score = 10 + _rolls[frameIndex + 2];
+                    frameIndex += 2;
                 }
                 else
                 {
-                    score = _rolls[i] + _rolls[i + 1] + score;
-                    i += 2;
+                    score = _rolls[frameIndex] + _rolls[frameIndex + 1] + score;
+                    frameIndex += 2;
                 }  
             }
         
             return score;
+        }
+
+        private bool isSpare(int frameIndex)
+        {
+            return _rolls[frameIndex] + _rolls[frameIndex + 1] == 10;
         }
     }
 }
