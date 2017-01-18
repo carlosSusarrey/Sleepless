@@ -20,5 +20,16 @@ namespace Sleepless.Tests
             }
             newGame.Score().Should().Be(0);
         }
+
+        [Fact]
+        public void Rolling_all_ones_Scores_20()
+        {
+            BowlingGame newGame = new BowlingGame();
+            for (var i = 0; i < 20; i++)
+            {
+                newGame.Roll(1);
+            }
+            newGame.Score().Should().Be(20);
+        }
     }
 }
