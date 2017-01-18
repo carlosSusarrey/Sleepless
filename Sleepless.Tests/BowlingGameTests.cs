@@ -39,5 +39,16 @@ namespace Sleepless.Tests
             RollMany(1,20);
             _myGame.Score().Should().Be(20);
         }
+
+        [Fact]
+        public void Rolling_a_Spare_followed_by_3_scores_16()
+        {
+            _myGame = GetNewGame();
+            _myGame.Roll(5);
+            _myGame.Roll(5);
+            _myGame.Roll(3);
+            RollMany(0,17);
+            _myGame.Score().Should().Be(16);
+        }
     }
 }
