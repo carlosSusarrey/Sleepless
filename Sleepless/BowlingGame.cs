@@ -16,6 +16,11 @@ namespace Sleepless
             var frameIndex = 0;
             for (var frame = 0; frame < 10; frame++)
             {
+                if (_rolls[frameIndex] == 10)
+                {
+                    score = 10 + _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
+                    frameIndex ++;
+                }
                 if (isSpare(frameIndex))
                 {
                     score = 10 + _rolls[frameIndex + 2];

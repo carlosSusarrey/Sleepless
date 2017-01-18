@@ -55,5 +55,16 @@ namespace Sleepless.Tests
             RollMany(0,17);
             _myGame.Score().Should().Be(16);
         }
+
+        [Fact]
+        public void Rolling_a_Strike_followed_by_3_followed_by_5_scores_26()
+        {
+            _myGame = GetNewGame();
+            _myGame.Roll(10);
+            _myGame.Roll(3);
+            _myGame.Roll(5);
+            RollMany(0,16);
+            _myGame.Score().Should().Be(26);
+        }
     }
 }
