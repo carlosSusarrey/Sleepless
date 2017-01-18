@@ -16,14 +16,14 @@ namespace Sleepless
             var frameIndex = 0;
             for (var frame = 0; frame < 10; frame++)
             {
-                if (_rolls[frameIndex] == 10)
+                if (IsStrike(frameIndex))
                 {
-                    score = 10 + _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
+                    score = score + 10 + StrikeBonus(frameIndex);
                     frameIndex ++;
                 }
-                if (isSpare(frameIndex))
+                if (IsSpare(frameIndex))
                 {
-                    score = 10 + _rolls[frameIndex + 2];
+                    score = score + 10 + SpareBonus(frameIndex);
                     frameIndex += 2;
                 }
                 else
@@ -36,7 +36,22 @@ namespace Sleepless
             return score;
         }
 
-        private bool isSpare(int frameIndex)
+        private int StrikeBonus(int frameIndex)
+        {
+            return _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
+        }
+
+        private int SpareBonus(int frameIndex)
+        {
+            return _rolls[frameIndex + 2];
+        }
+
+        private bool IsStrike(int frameIndex)
+        {
+            return _rolls[frameIndex] == 10;
+        }
+
+        private bool IsSpare(int frameIndex)
         {
             return _rolls[frameIndex] + _rolls[frameIndex + 1] == 10;
         }

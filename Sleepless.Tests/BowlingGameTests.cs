@@ -30,6 +30,11 @@ namespace Sleepless.Tests
             _myGame.Roll(5);
         }
 
+        private void RollStrike()
+        {
+            _myGame.Roll(10);
+        }
+
         [Fact]
         public void Rolling_all_misses_Scores_zero()
         {
@@ -60,7 +65,7 @@ namespace Sleepless.Tests
         public void Rolling_a_Strike_followed_by_3_followed_by_5_scores_26()
         {
             _myGame = GetNewGame();
-            _myGame.Roll(10);
+            RollStrike();
             _myGame.Roll(3);
             _myGame.Roll(5);
             RollMany(0,16);
